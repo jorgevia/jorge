@@ -11,7 +11,21 @@
 |
 */
 
+/*
 Route::get('/', function()
 {
 	return View::make('hello');
 });
+*/
+
+
+Route::get('/', function()
+{
+    new Bazzoloviale\Ejemplo;
+});
+
+
+Route::get('/jobs', 'JobsController@store');
+
+
+

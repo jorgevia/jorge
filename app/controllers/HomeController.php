@@ -1,7 +1,6 @@
 <?php
 
 class HomeController extends BaseController {
-
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
