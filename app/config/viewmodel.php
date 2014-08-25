@@ -1,5 +1,6 @@
 <?php
 
 return array(
-    'dir' => 'app/models/views'
+    'dir' => '/models/views/',
+    'namespace' => '\\ViewModels\\'
 );

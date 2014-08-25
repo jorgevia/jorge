@@ -7,9 +7,11 @@ namespace Bazzoloviale\viewModels;
 class ViewModelContainer
 {
     protected $mappedViewModels;
+    protected $loader;
 
-    public function __construct(array $viewModels) {
-        $this->init($viewModels);
+    public function __construct(ViewModelsLoaderInterface $loader) {
+        $this->loader = $loader;
+        $this->init($loader->loadViewModels());
     }
 
     public function init($viewModels) {

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Bazzoloviale\viewModels\ViewModelContainer;
+use Bazzoloviale\viewModels\ViewModelFileLoader;
 
 class ViewModelServiceProvider extends ServiceProvider {
 
@@ -28,7 +29,7 @@ class ViewModelServiceProvider extends ServiceProvider {
     protected function registerCommandTranslator()
     {
         $this->app->singleton('Bazzoloviale\viewModels\ViewModelContainer', function() {
-            return new ViewModelContainer(array('Bazzoloviale\viewModels\TestViewModel'));
+            return new ViewModelContainer(new ViewModelFileLoader);
         });
     }
 

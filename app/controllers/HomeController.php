@@ -1,4 +1,5 @@
 <?php
+use Bazzoloviale\viewModels\ViewModelFileLoader;
 
 class HomeController extends BaseController {
 	/*
@@ -16,7 +17,6 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		echo \Config::get('viewmodel.dir');
 		echo $this->viewModel->testViewModel("Jorge");
 		return View::make('pages.home');
 	}

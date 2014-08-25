@@ -22,7 +22,8 @@
 			"app/tests/TestCase.php"
 		],
 		"psr-4": {
-			"Bazzoloviale\\": "app/lib/bazzoloviale"
+			"Bazzoloviale\\": "app/lib/bazzoloviale",
+			"ViewModels\\" : "app/models/views"
 		}
 	},
 

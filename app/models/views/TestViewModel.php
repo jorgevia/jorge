@@ -1,6 +1,5 @@
 <?php
-namespace Bazzoloviale\viewModels;
-
+namespace ViewModels;
 /**
 *   Class in charge of loading viewModels form different resources
 */
