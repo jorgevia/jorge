@@ -1,6 +1,4 @@
 <?php
-use \Bazzoloviale\viewModels\TestViewModel;
-use \Bazzoloviale\viewModels\ViewModelContainer;
 
 class HomeController extends BaseController {
 	/*
@@ -18,10 +16,8 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-
-		$view = new ViewModelContainer(array('\Bazzoloviale\viewModels\TestViewModel'));
-		$view->testViewModel();
-		die;
+		echo \Config::get('viewmodel.dir');
+		echo $this->viewModel->testViewModel("Jorge");
 		return View::make('pages.home');
 	}
 

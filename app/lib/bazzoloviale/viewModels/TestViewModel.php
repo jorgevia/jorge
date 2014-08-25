@@ -6,7 +6,7 @@ namespace Bazzoloviale\viewModels;
 */
 class TestViewModel
 {
-    public function testViewModel() {
-        var_dump("El view Model se ha creado satisfactoriamente");
+    public function testViewModel($name) {
+        return "El view Model se ha creado satisfactoriamente, gracias $name";
     }
 }
