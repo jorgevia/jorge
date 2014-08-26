@@ -18,6 +18,7 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
 		echo $this->viewModel->testViewModel("Jorge");
+        echo $this->viewModel->clientViewModel();
 		return View::make('pages.home');
 	}
 
