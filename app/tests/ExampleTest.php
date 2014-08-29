@@ -1,5 +1,6 @@
 <?php
 
+use \Mockery as Mockery;
 class ExampleTest extends TestCase {
 
 	/**
@@ -10,8 +11,6 @@ class ExampleTest extends TestCase {
 	public function testBasicExample()
 	{
 		$crawler = $this->client->request('GET', '/');
-
 		$this->assertTrue($this->client->getResponse()->isOk());
 	}
-
 }

@@ -17,6 +17,7 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
+        //En realidad se va a llamar al método render en vex del nombre
 		echo $this->viewModel->testViewModel("Jorge");
         echo $this->viewModel->clientViewModel();
 		return View::make('pages.home');

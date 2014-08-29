@@ -6,7 +6,8 @@ namespace Bazzoloviale\viewModels;
 */
 class ViewModelContainer
 {
-    protected $mappedViewModels;
+    const REG_EXP_CLASS_NAME = '/(\w+)\\\\?$/';
+    protected $viewModelsMap = array();
     protected $loader;
 
     public function __construct(ViewModelsLoaderInterface $loader) {
@@ -14,37 +15,29 @@ class ViewModelContainer
         $this->init($loader->loadViewModels());
     }
 
-    public function init($viewModels) {
-        foreach ($viewModels as $viewModelClass) {
-            $key = $this->getMethodName($viewModelClass);
-            //Key is the method name, this will be managed by the __call mehod
-            $this->mappedViewModels[$key] = $viewModelClass;
+    protected function init(array $viewModels) {
+        foreach ($viewModels as $viewModel) {
+            $this->viewModelsMap[$this->getClassNameWithoutNamespace($viewModel)] = $viewModel;
         }
     }
 
-    protected function getMethodName($className) {
-        $classNameWithoutNamespace = $this->getClassName($className);
-        return lcfirst($classNameWithoutNamespace);
+    public function getClassNameWithoutNamespace($className) {
+        preg_match(self::REG_EXP_CLASS_NAME, $className, $matches);
+        return $matches[1];
     }
 
     /**
-    * Obtains an object class name without namespaces
-    */
-    protected function getClassName($className) {
-        if (preg_match('@\\\\([\w]+)$@', $className, $matches)) {
-            $className = $matches[1];
-        }
-        return $className;
-    }
-
+     * @param $method
+     * @param $args
+     * @return String HTML
+     */
     public function __call($method, $args) {
-        if (array_key_exists($method, $this->mappedViewModels)) {
+        $viewModelClass = ucfirst($method);
+        if (array_key_exists($viewModelClass, $this->viewModelsMap)) {
             //instance a new class, call its method
-            $className = $this->mappedViewModels[$method];
-            $classInstance = new $className;
-            if(method_exists($classInstance, $method)) {
-                return call_user_func_array(array($classInstance, $method), $args);
-            }
+            $classReflection = new \ReflectionClass($this->viewModelsMap[$viewModelClass]);
+            $classInstance = $classReflection->newInstanceArgs($args);
+            return $classInstance->render();
         }
     }
 }

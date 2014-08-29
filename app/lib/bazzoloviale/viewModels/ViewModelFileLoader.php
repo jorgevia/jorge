@@ -7,6 +7,9 @@ use  \Symfony\Component\Finder\SplFileInfo;
 */
 class ViewModelFileLoader implements ViewModelsLoaderInterface
 {
+    const EXP_REG_NAMESPACE = '/namespace\s+((?:\\\\?\w+)+)\\\\?;$/';
+    const EXP_REG_NAME = '/(\w+)\.php$/';
+
     protected $directory;
     protected $ViewModelsClasses = array();
 
@@ -24,7 +27,6 @@ class ViewModelFileLoader implements ViewModelsLoaderInterface
             foreach($files as $fileInfo) {
                 $this->ViewModelsClasses[] = $this->_getClassName($fileInfo);
             }
-            die;
             return $this->ViewModelsClasses;
         } else {
             //@TODO Handle exception
@@ -47,8 +49,7 @@ class ViewModelFileLoader implements ViewModelsLoaderInterface
      */
     protected function _getClassName(SplFileInfo $fileInfo) {
         $namespace = $this->_getNamespace($fileInfo);
-        preg_match("/(\w+)\.php$/", $fileInfo->getFileName(), $matches);
-        var_dump($namespace . '\\' . $matches[1]);
+        preg_match(self::EXP_REG_NAME, $fileInfo->getFileName(), $matches);
         return $namespace . '\\' . $matches[1];
     }
 
@@ -64,11 +65,12 @@ class ViewModelFileLoader implements ViewModelsLoaderInterface
         {
             $line = fgets($file);
             if (stripos($line, 'namespace') !== false) {
-                $namespace = preg_replace('/namespace\ +([\w\\]+);/i', '$1', $line);
+                preg_match(self::EXP_REG_NAMESPACE, trim($line), $matches);
+                $namespace = $matches[1];
                 $flag = false;
             }
         }
         fclose($file);
-        return $namespace ? trim($namespace) : '';
+        return $namespace ? $namespace : '';
     }
 }
