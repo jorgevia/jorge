@@ -1,7 +1,8 @@
 <?php
-use Bazzoloviale\viewModels\ViewModelFileLoader;
+
 
 class HomeController extends BaseController {
+
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
@@ -14,13 +15,11 @@ class HomeController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-
 	public function showWelcome()
 	{
         //En realidad se va a llamar al método render en vex del nombre
-		echo $this->viewModel->testViewModel("Jorge");
-        echo $this->viewModel->clientViewModel();
-		return View::make('pages.home');
-	}
+		echo $this->viewModel->testViewModel();
+       // echo $this->viewModel->clientViewModel();
 
+	}
 }

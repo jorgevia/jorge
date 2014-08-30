@@ -1,20 +1,12 @@
 <?php
+use Bazzoloviale\viewModels\ViewModelsTrait;
 
 class BaseController extends Controller {
 
-	protected $viewModel;
-
+    //Adds View Model functionality
+    use ViewModelsTrait;
 	/**
-	 * Setup the layout used by the controller.
-	 *
-	 * @return void
-	 */
-	public function __construct(Bazzoloviale\viewModels\ViewModelContainer $viewModel) {
-		$this->viewModel = $viewModel;
-	}
-	/**
-	 * Setup the layout used by the controller.
-	 *
+	 * Setup the layout used by the controller.	 *
 	 * @return void
 	 */
 	protected function setupLayout()

@@ -9,6 +9,6 @@
 namespace Bazzoloviale\viewModels;
 
 
-interface ViewModel {
-    public function render();
+interface ViewModelInterface {
+    //Interface, now is empty but is here to add future stuff
 }

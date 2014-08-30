@@ -1,21 +1,12 @@
 <?php
 namespace ViewModels;
-use \Bazzoloviale\viewModels\ViewModel;
+use \Bazzoloviale\viewModels\ViewModelBase;
 /*
 *   Class in charge of loading viewModels form different resources
 */
-class TestViewModel implements ViewModel
+class TestViewModel extends ViewModelBase
 {
-    protected $name;
-
-    public function __construct($name) {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
     public function render() {
-        return "El view Model se ha creado satisfactoriamente, gracias {$this->name}";
+        return \View::make('pages.home');
     }
 }

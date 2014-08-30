@@ -7,6 +7,7 @@ namespace Bazzoloviale\viewModels;
 class ViewModelContainer
 {
     const REG_EXP_CLASS_NAME = '/(\w+)\\\\?$/';
+    const VIEW_HELPER_METHOD = 'render';
     protected $viewModelsMap = array();
     protected $loader;
 
@@ -35,9 +36,9 @@ class ViewModelContainer
         $viewModelClass = ucfirst($method);
         if (array_key_exists($viewModelClass, $this->viewModelsMap)) {
             //instance a new class, call its method
-            $classReflection = new \ReflectionClass($this->viewModelsMap[$viewModelClass]);
-            $classInstance = $classReflection->newInstanceArgs($args);
-            return $classInstance->render();
+            $classInstance = new $this->viewModelsMap[$viewModelClass];
+            $reflectionMethod = new \ReflectionMethod($this->viewModelsMap[$viewModelClass], self::VIEW_HELPER_METHOD);
+            return $reflectionMethod->invokeArgs($classInstance, $args);
         }
     }
 }

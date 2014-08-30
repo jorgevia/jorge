@@ -1,12 +1,12 @@
 <?php
 namespace ViewModels\clientes;
-use \Bazzoloviale\viewModels\ViewModel;
+use \Bazzoloviale\viewModels\ViewModelBase;
 /**
 *   Class in charge of loading viewModels form different resources
 */
-class ClientViewModel implements ViewModel
+class ClientViewModel extends ViewModelBase
 {
     public function render() {
-        return "<h1>Hola clientes</h1>";
+        return "Hola clientes";
     }
 }
