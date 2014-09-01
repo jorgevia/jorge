@@ -1,6 +1,7 @@
 <?php
 namespace Bazzoloviale\viewModels;
 use  \Symfony\Component\Finder\SplFileInfo;
+use Illuminate\Filesystem\Filesystem;
 
 /**
 *   Class in charge of loading viewModels from different resources
@@ -10,11 +11,10 @@ class ViewModelFileLoader implements ViewModelsLoaderInterface
     const EXP_REG_NAMESPACE = '/namespace\s+((?:\\\\?\w+)+)\\\\?;$/';
     const EXP_REG_NAME = '/(\w+)\.php$/';
 
-    protected $directory;
-    protected $ViewModelsClasses = array();
+    protected $fileSystem;
 
-    public function __construct() {
-        $this->directory = $this->_getDirectory();
+    public function __construct(Filesystem $fileSystem) {
+        $this->fileSystem = $fileSystem;
     }
     /**
      * Load View Models from a directory
@@ -22,14 +22,16 @@ class ViewModelFileLoader implements ViewModelsLoaderInterface
      */
     public function loadViewModels()
     {
-        if (\File::isDirectory($this->directory )) {
-            $files = \File::allFiles($this->directory);
+        $viewModelClasses = array();
+        $directory = $this->_getDirectory();
+        if ($this->fileSystem->isDirectory($directory)) {
+            $files = $this->fileSystem->allFiles($directory);
             foreach($files as $fileInfo) {
-                $this->ViewModelsClasses[] = $this->_getClassName($fileInfo);
+                $viewModelClasses[] = $this->_getClassName($fileInfo);
             }
-            return $this->ViewModelsClasses;
+            return $viewModelClasses;
         } else {
-            //@TODO Handle exception
+            //@TODO Handle exception not a directory
             //Create a custom Exception
         }
     }

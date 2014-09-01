@@ -1,6 +1,6 @@
 <?php
 
-use \Mockery as Mockery;
+
 class ExampleTest extends TestCase {
 
 	/**

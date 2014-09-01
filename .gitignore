@@ -5,4 +5,7 @@ composer.lock
 .env.*.php
 .env.php
 .DS_Store
+.idea
+ide-helper.php
+
 Thumbs.db
