@@ -12,15 +12,25 @@ class ViewModelFileLoader implements ViewModelsLoaderInterface
     const EXP_REG_NAME = '/(\w+)\.php$/';
 
     protected $fileSystem;
+    protected $sessionStorage;
 
-    public function __construct(Filesystem $fileSystem) {
+    public function __construct(Filesystem $fileSystem, ViewModelCacheStorageInterface $sessionStorage) {
         $this->fileSystem = $fileSystem;
+        $this->sessionStorage = $sessionStorage;
+    }
+
+    public function loadViewModels() {
+        $viewModels = $this->sessionStorage->load();
+        if (is_null($viewModels)) {
+            $viewModels = $this->loadViewModelsFromDirectory();
+        }
+        return $viewModels;
     }
     /**
      * Load View Models from a directory
      * @return array
      */
-    public function loadViewModels()
+    protected function loadViewModelsFromDirectory()
     {
         $viewModelClasses = array();
         $directory = $this->_getDirectory();
@@ -29,6 +39,7 @@ class ViewModelFileLoader implements ViewModelsLoaderInterface
             foreach($files as $fileInfo) {
                 $viewModelClasses[] = $this->_getClassName($fileInfo);
             }
+            $this->sessionStorage->store($viewModelClasses);
             return $viewModelClasses;
         } else {
             //@TODO Handle exception not a directory

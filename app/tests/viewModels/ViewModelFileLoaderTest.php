@@ -8,7 +8,40 @@
 use \Mockery as Mockery;
 class ViewModelFileLoaderTest extends TestCase {
 
-    public function testLoadViewModels() {
+    protected function tearDown()
+    {
+        mockery::close();
+    }
+
+    public function testLoadViewModelsSavedOnSession() {
+        $viewModelsarray = array('namespace/fileOne', 'namespace/fileTwo');
+        $sessionStoreMock = mockery::mock('Bazzoloviale\viewModels\ViewModelSessionStorage');
+        $sessionStoreMock->shouldReceive('load')->times(1)->andReturn($viewModelsarray);
+
+        $viewModelLoaderMock = mockery::mock('Bazzoloviale\viewModels\ViewModelFileLoader')->makePartial()->shouldAllowMockingProtectedMethods();
+        $viewModelLoaderMock->shouldReceive('loadViewModelsFromDirectory')->times(0)->andReturn($viewModelsarray);
+
+        $this->_setPrivateProperty($viewModelLoaderMock, 'sessionStorage', $sessionStoreMock, 'Bazzoloviale\viewModels\ViewModelFileLoader');
+
+        $actual = $viewModelLoaderMock->loadViewModels();
+        $this->assertEquals($actual, $viewModelsarray);
+    }
+
+    public function testLoadViewModelsNotSavedOnSession() {
+        $viewModelsarray = array('namespace/fileOne', 'namespace/fileTwo');
+        $sessionStoreMock = mockery::mock('Bazzoloviale\viewModels\ViewModelSessionStorage');
+        $sessionStoreMock->shouldReceive('load')->times(1)->andReturn(null);
+
+        $viewModelLoaderMock = mockery::mock('Bazzoloviale\viewModels\ViewModelFileLoader')->makePartial()->shouldAllowMockingProtectedMethods();
+        $viewModelLoaderMock->shouldReceive('loadViewModelsFromDirectory')->times(1)->andReturn($viewModelsarray);
+
+        $this->_setPrivateProperty($viewModelLoaderMock, 'sessionStorage', $sessionStoreMock, 'Bazzoloviale\viewModels\ViewModelFileLoader');
+
+        $actual = $viewModelLoaderMock->loadViewModels();
+        $this->assertEquals($actual, $viewModelsarray);
+    }
+
+    public function testLoadViewModelsFromDirectory() {
         $directoryMock = 'directory';
 
         $viewModelsFilesMock = array(
@@ -20,21 +53,19 @@ class ViewModelFileLoaderTest extends TestCase {
         $fileSystemMock->shouldReceive('isDirectory')->times(1)->with($directoryMock)->andReturn(true);
         $fileSystemMock->shouldReceive('allFiles')->times(1)->with($directoryMock)->andReturn($viewModelsFilesMock);
 
-        $viewModelLoaderMock = $this->getMockBuilder('Bazzoloviale\viewModels\ViewModelFileLoader')
-            ->disableOriginalConstructor()
-            ->setMethods(array('_getClassName', '_getDirectory'))
-            ->getMock();
-        $viewModelLoaderMock->expects($this->exactly(2))
-            ->method('_getClassName')
-            ->will($this->onConsecutiveCalls('namespace/fileOne', 'namespace/fileTwo'));
-        $viewModelLoaderMock->expects($this->once())
-            ->method('_getDirectory')
-            ->will($this->returnValue($directoryMock));
+        $sessionStoreMock = mockery::mock('Bazzoloviale\viewModels\ViewModelSessionStorage');
+        $sessionStoreMock->shouldReceive('store')->times(1)->with(array('namespace/fileOne', 'namespace/fileTwo'));
+
+        //Doesn't call constructor and allows to mock protected methods
+        $viewModelLoaderMock = mockery::mock('Bazzoloviale\viewModels\ViewModelFileLoader')->makePartial()->shouldAllowMockingProtectedMethods();
+        $viewModelLoaderMock->shouldReceive('_getDirectory')->times(1)->andReturn($directoryMock);
+        $viewModelLoaderMock->shouldReceive('_getClassName')->times(1)->andReturn('namespace/fileOne');
+        $viewModelLoaderMock->shouldReceive('_getClassName')->times(1)->andReturn('namespace/fileTwo');
 
         $this->_setPrivateProperty($viewModelLoaderMock, 'fileSystem', $fileSystemMock, 'Bazzoloviale\viewModels\ViewModelFileLoader');
+        $this->_setPrivateProperty($viewModelLoaderMock, 'sessionStorage', $sessionStoreMock, 'Bazzoloviale\viewModels\ViewModelFileLoader');
 
-        $actual = $viewModelLoaderMock->loadViewModels();
-
+        $actual = $viewModelLoaderMock->loadViewModelsFromDirectory();
         //Assertions
         $this->assertEquals($actual, array('namespace/fileOne', 'namespace/fileTwo'));
     }

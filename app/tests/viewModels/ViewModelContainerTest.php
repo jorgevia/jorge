@@ -7,6 +7,11 @@
  */
 use \Mockery as Mockery;
 class ViewModelContainerTest extends TestCase {
+
+    protected function tearDown()
+    {
+        mockery::close();
+    }
     /**
      * @param $className
      * @param $expected

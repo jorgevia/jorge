@@ -29,7 +29,8 @@ class ViewModelServiceProvider extends ServiceProvider {
     protected function registerCommandTranslator()
     {
         $this->app->singleton('Bazzoloviale\viewModels\ViewModelContainer', function() {
-            return new ViewModelContainer(new ViewModelFileLoader($this->app['files']));
+
+            return new ViewModelContainer(new ViewModelFileLoader($this->app['files'], new ViewModelSessionStorage($this->app['session'])));
         });
     }
 
