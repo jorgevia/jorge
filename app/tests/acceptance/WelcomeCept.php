@@ -9,4 +9,6 @@ $I = new AcceptanceTester($scenario);
 $I->wantTo('Check the home page for a welcome message');
 $I->amOnPage('/');
 $I->seeResponseCodeIs(200);
+$I->see('Revista Digital');
+$I->see('Búsqueda');
 $I->see('Welcome to BaTango');

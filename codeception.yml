@@ -6,12 +6,14 @@ paths:
     helpers: app/tests/_support
 settings:
     bootstrap: _bootstrap.php
-    colors: false
+    colors: true
     memory_limit: 1024M
 modules:
     config:
         Db:
-            dsn: 'mysql:host=127.0.0.1:33060;dbname=batango'
+            dsn: 'mysql:host=localhost;dbname=batangotest'
             user: 'homestead'
             password: 'secret'
-            dump: app/tests/_data/dump.sql
+            dump: 'app/tests/_data/dump.sql'
+            populate: true
+            cleanup: true

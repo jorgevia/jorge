@@ -12,10 +12,14 @@ class welcomeCest
     }
 
     // tests
-    public function tryToTest(FunctionalTester $I)
+    public function testing(FunctionalTester $I)
     {
-        $I->wantTo('Check the home page for a welcome message');
-
+        $I->wantTo('Check database data');
+        $I->seeInDatabase('entities', array(
+            'first_name' => 'jorge',
+            'middle_name' => 'luis',
+            'last_name' => 'viale'
+        ));
     }
 
 
