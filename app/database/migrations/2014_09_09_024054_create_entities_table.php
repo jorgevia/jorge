@@ -14,29 +14,35 @@ class CreateEntitiesTable extends Migration {
 	{
 		Schema::create('entities', function(Blueprint $table)
 		{
-			$table->increments('id_entities'); //Primary key
+			$table->increments('entity_id'); //Primary key
 
-			$table->char('name', 255)->unique(); //Add index to the na
+			$table->char('name', 255)->unique();
 			$table->string('description')->nullable();
 
 			$table->string('email')->nullable();
 			$table->string('address')->nullable();
+
+			//A quién hay que dirigirse para hablar
+			$table->string('contact')->nullable();
+
 
 			//Google maps
 			$table->string('latitude')->nullable();
 			$table->string('longitude')->nullable();
 
 			//Foreign keys
-			$table->tinyInteger('id_zone')->unsigned()->default(1);
-			$table->tinyInteger('id_target')->unsigned()->default(1)->nullable(); //If teachs kids, adults, etc.
-			$table->smallInteger('id_type')->unsigned();
+			$table->tinyInteger('zone_id')->unsigned()->default(1);
+			$table->tinyInteger('target_id')->unsigned()->default(1)->nullable(); //If teachs kids, adults, etc.
+			$table->smallInteger('type_id')->unsigned();
 
-			$table->smallInteger('id_country')->unsigned()->default(1);
-			$table->smallInteger('id_province')->unsigned()->default(1);
-			$table->smallInteger('id_city')->unsigned()->default(1);
+			$table->smallInteger('country_id')->unsigned()->default(1);
+			$table->smallInteger('province_id')->unsigned()->default(1);
+			$table->smallInteger('city_id')->unsigned()->default(1);
 
 			//Se va a permitir agregar una imagen más tarde
 			$table->timestamps();
+
+			$table->engine = 'InnoDB';
 		});
 	}
 
