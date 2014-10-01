@@ -12,8 +12,11 @@ class CreateEntitiesTable extends Migration {
 	 */
 	public function up()
 	{
+
 		Schema::create('entities', function(Blueprint $table)
 		{
+			//La idea de esto es que deben ser lugares físicos donde pueden desarrollarse actividades o no
+			//Una actividad es cualquier evento organizado con día, fecha y lugar físico en el que se desarrolla
 			$table->increments('entity_id'); //Primary key
 
 			$table->char('name', 255)->unique();
@@ -25,15 +28,12 @@ class CreateEntitiesTable extends Migration {
 			//A quién hay que dirigirse para hablar
 			$table->string('contact')->nullable();
 
-
 			//Google maps
 			$table->string('latitude')->nullable();
 			$table->string('longitude')->nullable();
 
 			//Foreign keys
 			$table->tinyInteger('zone_id')->unsigned()->default(1);
-			$table->tinyInteger('target_id')->unsigned()->default(1)->nullable(); //If teachs kids, adults, etc.
-			$table->smallInteger('type_id')->unsigned();
 
 			$table->smallInteger('country_id')->unsigned()->default(1);
 			$table->smallInteger('province_id')->unsigned()->default(1);
