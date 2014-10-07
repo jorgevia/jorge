@@ -15,8 +15,11 @@ class CreateTimedActivitiesTable extends Migration {
 		Schema::create('timed_activities', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('description')->nullable();
 			//day, start,finish
-			$table->tinyInteger('day_id')->unsigned();
+			//Acá podemos hacer lo siguiente
+			// después de cada número seguirlo con el time
+			$table->tinyInteger('day_id')->unsigned(); //days followwed by colons (0,1,2,3,4,5,6)
 			$table->time('start');
 			$table->time('finish');
 

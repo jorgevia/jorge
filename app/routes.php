@@ -17,7 +17,6 @@ Route::get('/', function()
 	return View::make('hello');
 });
 */
-
 //Homa page
 Route::get('/', 'HomeController@showWelcome');
 

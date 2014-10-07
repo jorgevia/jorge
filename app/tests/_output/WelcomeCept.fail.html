@@ -1,142 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0014)about:internet -->
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Zend Server Test Page</title>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style type="text/css" media="screen">
-<!--
-body { margin:0px;
-margin-right:50px;
-margin-left:50px;
-font-family:Arial,Helvetica,sans-serif;
-background-color:#85b2ca;
-font-size:12px;
-font-color:#3a4a54;
-line-height:2em; }
-h1 { color:#327199;
-font-size:2em;
-margin-bottom:0.4em;
-font-weight:normal; }
-h2 { color:#327199;
-font-size:1.3em;
-margin:2.5em 0 0 0; }
-a { color:#0088B5;
-text-decoration:underline; }
-a:hover { color:#8AB54A;
-text-decoration:none; }
-.body-container { padding:30px 50px 100px 30px;
-margin-top:10px;
-border:6px solid #3a4a54;
-background-color:#fff; }
-.text-container { padding-left:75px;
-padding-top:20px; }
-.footer { position:absolute;
-left:80px;
-bottom:20px;
-font-size:8pt;
-color:#fff; }
--->
-</style>
-<script type="text/javascript" language="JavaScript">
-//<![CDATA[
-function reDo() {
-  if (innerWidth != origWidth || innerHeight != origHeight)
-     location.reload();
-}
-if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
-	origWidth = innerWidth;
-	origHeight = innerHeight;
-	onresize = reDo;
-}
-onerror = null; 
-//]]>
-</script>
-<style type="text/css">
-<!--
-div.WebHelpPopupMenu { position:absolute;
-left:0px;
-top:0px;
-z-index:4;
-visibility:hidden; }
--->
-</style>
-<script type="text/javascript" language="javascript1.2" src="whmsg.js"></script>
-<script type="text/javascript" language="javascript" src="whver.js"></script>
-<script type="text/javascript" language="javascript1.2" src="whproxy.js"></script>
-<script type="text/javascript" language="javascript1.2" src="whutils.js"></script>
-<script type="text/javascript" language="javascript1.2" src="whlang.js"></script>
-<script type="text/javascript" language="javascript1.2" src="whtopic.js"></script>
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
- <meta name="generator" content="Adobe RoboHelp 8" />
-</head>
-<body><script type="text/javascript" language="javascript1.2">//<![CDATA[
-<!--
-if (window.gbWhTopic)
-{
-	var strUrl = document.location.href;
-	var bc = 0;
-	var n = strUrl.toLowerCase().indexOf("bc-");
-	if(n != -1)
-	{
-		document.location.href = strUrl.substring(0, n);
-		bc = strUrl.substring(n+3);
-	}
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/layout.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-	if (window.addTocInfo)
-	{
-	addButton("show",BTN_TEXT,"Display Table of Contents","","","","",0,0,"","","");
+        <!-- nav -->
+        <ul class="nav nav-pills">
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      Revista Digital
+    </a>
+  </li>
+    <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      Búsqueda
+    </a>
+  </li>
+</ul>        <!-- content -->
+        <div class="content">
+                <h1>Welcome to BaTango</h1>
+         </div>
 
-	}
-	if (window.writeBtnStyle)
-		writeBtnStyle();
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
 
-	if (window.writeIntopicBar)
-		writeIntopicBar(1);
-
-	
-	document.write("<p style=\"text-align:right\"> ");
-AddMasterBreadcrumbs("Zend_Server.htm", "", ">", "Home", "Welcome.htm");
-document.write("Zend Server Test Page<\/p>");
-
-
-	if (window.setRelStartPage)
-	{
-	setRelStartPage("Zend_Server.htm");
-
-		autoSync(1);
-		sendSyncInfo();
-		sendAveInfoOut();
-	}
-}
-else
-	if (window.gbIE4)
-		document.location.reload();
-
-//-->
-//]]></script>
-<div class="body-container"><img src="http://static.zend.com/img/logo.gif" alt="Zend Technologies Ltd." />
-<div class="text-container">
-<h1>Zend Server Test Page</h1>
-<p>Zend Server is now up and running on this server. Once content is added this message will no longer be displayed.</p>
-<h2>If you are this server's administrator:</h2>
-<p>You can now add content to your Web server's document root. You can configure and control your Zend Server installation through the Zend Server Administration Interface. Please refer to the documentation or to your installation's README file for more information.</p>
-<p>If you need help getting started with Zend Server, please visit the on-line <a href="http://www.zend.com/products/resources/gettingstarted">resources page</a>.</p>
-<p>For more information about Zend Server you are welcome to visit us at <a href="http://www.zend.com/">www.zend.com</a>.</p>
-</div>
-<div class="footer">© 2014 Zend Technologies Ltd. All rights reserved.</div>
-</div>
-<script type="text/javascript" language="javascript1.2">//<![CDATA[
-<!--
-if (window.writeIntopicBar)
-	writeIntopicBar(0);
-
-
-highlightSearch();
-//-->
-//]]></script>
-</body>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
 </html>

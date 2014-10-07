@@ -27,7 +27,7 @@ class CreateActivitiesTable extends Migration {
 			//Crear otra tabla con los días especiales
 
 			$table->tinyInteger('target_id')->unsigned()->default(1)->nullable(); //If teachs kids, adults, etc.
-			$table->smallInteger('type_id')->unsigned(); //
+			$table->smallInteger('type_id')->unsigned(); //tipo de actividad
 
 			$table->timestamps();
 			$table->engine = 'InnoDB';
