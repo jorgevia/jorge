@@ -17,7 +17,7 @@ class CreateEntitiesTable extends Migration {
 		{
 			//La idea de esto es que deben ser lugares físicos donde pueden desarrollarse actividades o no
 			//Una actividad es cualquier evento organizado con día, fecha y lugar físico en el que se desarrolla
-			$table->increments('entity_id'); //Primary key
+			$table->increments('id'); //Primary key
 
 			$table->char('name', 255)->unique();
 			$table->string('description')->nullable();
@@ -41,8 +41,6 @@ class CreateEntitiesTable extends Migration {
 
 			//Se va a permitir agregar una imagen más tarde
 			$table->timestamps();
-
-			$table->engine = 'InnoDB';
 		});
 	}
 

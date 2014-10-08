@@ -11,7 +11,8 @@
 		"codeception/codeception": "~2.0",
 		"laracasts/commander": "~1.0",
 		"laracasts/testdummy": "~1.0",
-        "mockery/mockery": "dev-master"
+        "mockery/mockery": "dev-master",
+		"fzaninotto/faker": "1.4.0"
 	},
 	"autoload": {
 		"classmap": [

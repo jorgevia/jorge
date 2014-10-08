@@ -14,7 +14,7 @@ class CreateActivitiesTable extends Migration {
 	{
 		Schema::create('activities', function(Blueprint $table)
 		{
-			$table->increments('activity_id');
+			$table->increments('id');
 			$table->string('description')->nullable(); //activity name
 
 			//Ver si va a ser un String o habrá otra tabla, por ahora strings
@@ -24,13 +24,14 @@ class CreateActivitiesTable extends Migration {
 			$table->string('phones')->nullable();
 			$table->string('email')->nullable();
 
-			//Crear otra tabla con los días especiales
+			$table->integer('category_id')->unsigned()->index();
+			$table->foreign('category_id')->references('id')->on('categories'); //Analizar el tema de cascada
 
-			$table->tinyInteger('target_id')->unsigned()->default(1)->nullable(); //If teachs kids, adults, etc.
-			$table->smallInteger('type_id')->unsigned(); //tipo de actividad
+			//Crear otra tabla con los días especiales
+			//Target adults, kids, teens
+			$table->tinyInteger('target_id')->unsigned()->default(1)->nullable(); //without table
 
 			$table->timestamps();
-			$table->engine = 'InnoDB';
 		});
 	}
 

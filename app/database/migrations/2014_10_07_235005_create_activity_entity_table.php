@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateTimedActivitiesTable extends Migration {
+class CreateActivityEntityTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,24 +12,25 @@ class CreateTimedActivitiesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('timed_activities', function(Blueprint $table)
+		//Timed activities pivot
+		Schema::create('activity_entity', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('description')->nullable();
-			//day, start,finish
-			//Acá podemos hacer lo siguiente
-			// después de cada número seguirlo con el time
+
+			//Foreign keys
+			$table->integer('activity_id')->unsigned()->index();
+			$table->foreign('activity_id')->references('id')->on('activities');
+			$table->integer('entity_id')->unsigned()->index();
+			$table->foreign('entity_id')->references('id')->on('entities');
+
 			$table->tinyInteger('day_id')->unsigned(); //days followwed by colons (0,1,2,3,4,5,6)
 			$table->time('start');
 			$table->time('finish');
 
-			$table->integer('entity_id')->unsigned()->references('entity_id')->on('entities');
-			$table->integer('activity_id')->unsigned()->references('activity_id')->on('activities');
-
 			$table->timestamps();
 		});
 	}
-
 
 	/**
 	 * Reverse the migrations.
@@ -38,7 +39,7 @@ class CreateTimedActivitiesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('timed_activities');
+		Schema::drop('activity_entity');
 	}
 
 }

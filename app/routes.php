@@ -11,17 +11,20 @@
 |
 */
 
-/*
+
 Route::get('/', function()
 {
-	return View::make('hello');
+	$categories = Category::all()->toJson();;
+	print_r($categories);
+	//return View::make('hello');
 });
-*/
+
+
 //Homa page
-Route::get('/', 'HomeController@showWelcome');
+//Route::get('/', 'HomeController@showWelcome');
 
 //Jobs page
-Route::get('/jobs', 'JobsController@store');
+//Route::get('/jobs', 'JobsController@store');
 
 
 
