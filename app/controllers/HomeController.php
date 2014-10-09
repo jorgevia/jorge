@@ -18,7 +18,6 @@ class HomeController extends BaseController {
 	public function showWelcome()
 	{
         //En realidad se va a llamar al método render en vex del nombre
-		$categories = Category::all();
 		echo $this->viewModel->testViewModel();
        // echo $this->viewModel->clientViewModel();
 
