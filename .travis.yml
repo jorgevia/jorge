@@ -1,14 +1,14 @@
-# see http://about.travis-ci.org/docs/user/languages/php/ for more hints
-language: php
+language: node_js
+node_js:
+  - "0.10"
 
-# list any PHP version you want to test against
-php:
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm start > /dev/null &
+  - npm run update-webdriver
+  - sleep 1 # give server time to start
 
-  # aliased to a recent 5.4.x version
-  - 5.4
-  # aliased to a recent 5.5.x version
-  - 5.5
-  # aliased to a recent 5.6.x version
-  - 5.6
-
-phpunit
+script:
+  - node_modules/.bin/karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
+  - node_modules/.bin/protractor public/e2e-tests/protractor.conf.js --browser=firefox

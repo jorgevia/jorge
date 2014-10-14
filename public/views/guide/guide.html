@@ -1,0 +1,9 @@
+<h1>{{title}}</h1>
+<p>Milongas List for BaTango Guide.</p>
+<input type="text" ng-model="value" name="search">
+<ul>
+    <li ng-repeat="milonga in milongas | filter:value">{{milonga.name}}</li>
+</ul>
+
+
+

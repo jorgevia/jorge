@@ -24,8 +24,4 @@ Route::get('/', function()
 //Homa page
 Route::get('/', 'HomeController@showWelcome');
 
-//Jobs page
-Route::get('/jobs', 'JobsController@store');
-
-
 
