@@ -11,15 +11,25 @@ angular.module('myApp.guideEngine', ['ngRoute'])
 
 .controller('guideCtrl', ['$scope', function($scope) {
     $scope.title = "Buenos Aires Tango Guide";
-    $scope.milongas = [
-        {'name': 'Carlos 1'},
-        {'name': 'Jorge 2'},
-        {'name': 'Carlos 3'},
-        {'name': 'Milonga 4'},
-        {'name': 'Jorgete 5'},
-        {'name': 'Milonga 6'},
-        {'name': 'Milonga 7'}
+    $scope.countries = [
+        {value: '1', description: 'Argentina'},
+        {value: '2', description: 'Perú'}
     ];
 
+    $scope.loadCountries = function() {
+        console.log("called");
+    };
+    $scope.loadProvinces = function() {
+    };
 
-}]);
+
+}])
+    .directive("selectguide", function() {
+    return {
+        restrict: "A",
+        //scope: {},
+        templateUrl: 'views/guide/templates/guide-finder.html',
+        link: function (scope, element, attrs) {
+            scope.type = attrs.selectguide;
+        }
+    }});
