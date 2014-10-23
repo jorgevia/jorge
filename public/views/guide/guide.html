@@ -1,15 +1,6 @@
 <h1>{{title}}</h1>
 <p>Milongas List for BaTango Guide.</p>
 
-<input type="text" ng-model="value" name="search">
+    <select-guide type="countries" list="countries" label="Countries"></select-guide>
 
-<select ng-model="orderProp">
-    <option value="name">Alphabetical</option>
-    <option value="age">Newest</option>
-</select>
 
-<div selectguide="countries"></div>
-
-<ul>
-    <li ng-repeat="milonga in milongas | filter:value | orderBy:orderProp">{{milonga.name + '; age: ' + milonga.age}}</li>
-</ul>
